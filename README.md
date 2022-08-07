@@ -1,4 +1,4 @@
-# robofriends
+# Monsters Rolodex
 Tutorial for React
 To run the project:
 
