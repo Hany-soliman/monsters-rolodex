@@ -3,16 +3,16 @@ import Card from "./Card";
 
 
 
-const CardList = ({robotsArr}) => {
+const CardList = ({monstersArr}) => {
     return (
         <div>
-            {robotsArr.map((robot, i) => {
+            {monstersArr.map((monster, i) => {
                 return (
                     <Card
                         key={i}
-                        hash={robot.hash}
-                        name={robot.name}
-                        email={robot.email}/>
+                        hash={monster.hash}
+                        name={monster.name}
+                        email={monster.email}/>
                 )
             })
             }

@@ -1,6 +1,5 @@
 {
-  "name": "robo-friends",
-  "homepage": "https://hany-soliman.github.io/robo-friends/",
+  "name": "monsters-rolodex",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

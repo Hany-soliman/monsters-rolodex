@@ -1,42 +1,43 @@
-import {robotsArr} from "../Robots";
+import {monstersArr} from "../Robots";
 import SearchBox from "../components/SearchBox"
 import CardList from "../components/CardList";
 import Scroll from "../components/Scroll"
 import ErrorBoundry from "../components/ErrorBoundry";
-import React, {Component} from "react";
+import React, {useState, useEffect} from "react";
 
 
+const App = () => {
+    const [searchField, setSearchField] = useState('');
+    const [monsters, setMonstersArr] = useState([]);
+    const [filteredMonsters, setFilteredMonsters] = useState(monsters);
 
-class App extends Component {
-    constructor() {
-        super()
-        this.state = {
-            robotsArr,
-            searchField: ''
-        }
-    }
+    useEffect(() => {
+        setMonstersArr(monstersArr)
+    }, [])
 
-    onSearchChange = (e) => {
-        this.setState({searchField: e.target.value})
-    }
-
-    render() {
-        const {robotsArr, searchField} = this.state
-        const filteredRobots = robotsArr.filter(robot => {
-            return robot.name.toLowerCase().includes(searchField.toLowerCase())
+    useEffect(() => {
+        const newFilteredRobots = monsters.filter(monster => {
+            return monster.name.toLowerCase().includes(searchField.toLowerCase())
         })
-        return (
-            <div>
-                <h1>RoboFriends</h1>
-                <SearchBox onSearchChange={this.onSearchChange}/>
-                < Scroll>
-                    <ErrorBoundry>
-                <CardList robotsArr={filteredRobots}/>
-                    </ErrorBoundry>
-                </Scroll>
-            </div>
-        );
+        setFilteredMonsters(newFilteredRobots)
+    }, [monsters, searchField])
+
+    const onSearchChange = (e) => {
+        const searchFieldValue = e.target.value
+        setSearchField(searchFieldValue)
     }
+
+    return (
+        <div>
+            <h1>Monsters Rolodex</h1>
+            <SearchBox onSearchChange={onSearchChange}/>
+            < Scroll>
+                <ErrorBoundry>
+                    <CardList monstersArr={filteredMonsters}/>
+                </ErrorBoundry>
+            </Scroll>
+        </div>
+    );
 }
 
 

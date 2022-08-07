@@ -1,6 +1,6 @@
 import chance from 'chance';
 
-let robotsArr = []
+let monstersArr = []
 
 const generateHash = (length)=> {
     let result           = '';
@@ -13,7 +13,7 @@ const generateHash = (length)=> {
     return result;
 }
 
-class Robot {
+class Monster {
     constructor(hash, name, email) {
         this.hash = hash;
         this.name = name;
@@ -22,14 +22,14 @@ class Robot {
 }
 
 const createRobotsArr = (number)=>{
-    robotsArr = []
+    monstersArr = []
     for (let i = 0; i < number; i++) {
-        let robot = new Robot(generateHash(10), chance().name(), chance().email() )
-        robotsArr.push(robot)
+        let monster = new Monster(generateHash(10), chance().name(), chance().email() )
+        monstersArr.push(monster)
     }
-    return robotsArr
+    return monstersArr
 }
 
 createRobotsArr(100)
 
-export {robotsArr, createRobotsArr}
+export {monstersArr, createRobotsArr}
